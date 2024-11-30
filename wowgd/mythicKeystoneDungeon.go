@@ -116,10 +116,12 @@ type MythicKeystoneSeason struct {
 	} `json:"_links"`
 	ID             int   `json:"id"`
 	StartTimestamp int64 `json:"start_timestamp"`
+	EndTimestamp   int64 `json:"end_timestamp"`
 	Periods        []struct {
 		Key struct {
 			Href string `json:"href"`
 		} `json:"key"`
 		ID int `json:"id"`
 	} `json:"periods"`
+	SeasonName string `json:"season_name"`
 }
