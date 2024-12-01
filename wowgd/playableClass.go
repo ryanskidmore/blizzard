@@ -52,6 +52,20 @@ type PlayableClass struct {
 	PvpTalentSlots struct {
 		Href string `json:"href"`
 	} `json:"pvp_talent_slots"`
+	PlayableRaces []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"playable_races"`
+	AdditionalPowerTypes []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"additional_power_types"`
 }
 
 // PlayableClassMedia structure

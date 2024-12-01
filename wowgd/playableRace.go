@@ -33,6 +33,13 @@ type PlayableRace struct {
 		Type string `json:"type"`
 		Name string `json:"name"`
 	} `json:"faction"`
-	IsSelectable bool `json:"is_selectable"`
-	IsAlliedRace bool `json:"is_allied_race"`
+	IsSelectable    bool `json:"is_selectable"`
+	IsAlliedRace    bool `json:"is_allied_race"`
+	PlayableClasses []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"playable_classes"`
 }

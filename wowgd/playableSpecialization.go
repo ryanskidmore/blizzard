@@ -82,6 +82,30 @@ type PlayableSpecialization struct {
 			CastTime    string `json:"cast_time"`
 		} `json:"spell_tooltip"`
 	} `json:"pvp_talents"`
+	SpecTalentTree struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+	} `json:"spec_talent_tree"`
+	PowerType struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"power_type"`
+	PrimaryStatType struct {
+		Type string `json:"type"`
+		Name string `json:"name"`
+	} `json:"primary_stat_type"`
+	HeroTalentTrees []struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"hero_talent_trees"`
 }
 
 // PlayableSpecializationMedia structure
