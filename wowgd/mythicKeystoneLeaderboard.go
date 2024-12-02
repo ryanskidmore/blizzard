@@ -60,6 +60,15 @@ type MythicKeystoneLeaderboard struct {
 				ID int `json:"id"`
 			} `json:"specialization"`
 		} `json:"members"`
+		MythicRating struct {
+			Color struct {
+				R int     `json:"r"`
+				G int     `json:"g"`
+				B int     `json:"b"`
+				A float64 `json:"a"`
+			} `json:"color"`
+			Rating float64 `json:"rating"`
+		} `json:"mythic_rating"`
 	} `json:"leading_groups"`
 	KeystoneAffixes []struct {
 		KeystoneAffix struct {
@@ -70,6 +79,7 @@ type MythicKeystoneLeaderboard struct {
 			ID   int    `json:"id"`
 		} `json:"keystone_affix"`
 		StartingLevel int `json:"starting_level"`
+		MaxLevel      int `json:"max_level,omitempty"`
 	} `json:"keystone_affixes"`
 	MapChallengeModeID int    `json:"map_challenge_mode_id"`
 	Name               string `json:"name"`
