@@ -32,10 +32,18 @@ type MythicKeystoneDungeon struct {
 	Zone struct {
 		Slug string `json:"slug"`
 	} `json:"zone"`
+	Dungeon struct {
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name string `json:"name"`
+		ID   int    `json:"id"`
+	} `json:"dungeon"`
 	KeystoneUpgrades []struct {
 		UpgradeLevel       int `json:"upgrade_level"`
 		QualifyingDuration int `json:"qualifying_duration"`
 	} `json:"keystone_upgrades"`
+	IsTracked bool `json:"is_tracked"`
 }
 
 // MythicKeystoneIndex structure
