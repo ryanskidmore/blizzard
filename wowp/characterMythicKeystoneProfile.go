@@ -134,8 +134,47 @@ type CharacterMythicKeystoneProfileSeason struct {
 			ID   int    `json:"id"`
 		} `json:"dungeon"`
 		IsCompletedWithinTime bool `json:"is_completed_within_time"`
+		MythicRating          struct {
+			Color struct {
+				R int     `json:"r"`
+				G int     `json:"g"`
+				B int     `json:"b"`
+				A float64 `json:"a"`
+			} `json:"color"`
+			Rating float64 `json:"rating"`
+		} `json:"mythic_rating"`
+		MapRating struct {
+			Color struct {
+				R int     `json:"r"`
+				G int     `json:"g"`
+				B int     `json:"b"`
+				A float64 `json:"a"`
+			} `json:"color"`
+			Rating float64 `json:"rating"`
+		} `json:"map_rating"`
 	} `json:"best_runs"`
 	Character struct {
-		Href string `json:"href"`
+		Key struct {
+			Href string `json:"href"`
+		} `json:"key"`
+		Name  string `json:"name"`
+		ID    int    `json:"id"`
+		Realm struct {
+			Key struct {
+				Href string `json:"href"`
+			} `json:"key"`
+			Name string `json:"name"`
+			ID   int    `json:"id"`
+			Slug string `json:"slug"`
+		} `json:"realm"`
 	} `json:"character"`
+	MythicRating struct {
+		Color struct {
+			R int     `json:"r"`
+			G int     `json:"g"`
+			B int     `json:"b"`
+			A float64 `json:"a"`
+		} `json:"color"`
+		Rating float64 `json:"rating"`
+	} `json:"mythic_rating"`
 }
