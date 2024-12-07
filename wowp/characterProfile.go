@@ -104,6 +104,7 @@ type CharacterProfileSummary struct {
 	Reputations struct {
 		Href string `json:"href"`
 	} `json:"reputations"`
+	NameSearch string `json:"name_search"`
 }
 
 // ActiveTitle structure
