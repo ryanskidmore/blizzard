@@ -50,7 +50,7 @@ type Config struct {
 	Locale Locale `validate:"required"`
 
 	// UserAgent - Specify the user agent used for API Requests
-	UserAgent string `validate:"optional"`
+	UserAgent string
 }
 
 // Client regional API URLs, locale, client ID, client secret
