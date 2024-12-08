@@ -48,6 +48,9 @@ type Config struct {
 	// from region to region and align with those supported on Blizzard
 	// community sites.
 	Locale Locale `validate:"required"`
+
+	// UserAgent - Specify the user agent used for API Requests
+	UserAgent string `validate:"optional"`
 }
 
 // Client regional API URLs, locale, client ID, client secret
@@ -252,6 +255,9 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 	}
 
 	req.Header.Set("Accept", "application/json")
+	if c.cfg.UserAgent != "" {
+		req.Header.Set("User-Agent", c.cfg.UserAgent)
+	}
 
 	q := req.URL.Query()
 	q.Set("locale", c.locale.String())
@@ -329,6 +335,9 @@ func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery stri
 	}
 
 	req.Header.Set("Accept", "application/json")
+	if c.cfg.UserAgent != "" {
+		req.Header.Set("User-Agent", c.cfg.UserAgent)
+	}
 
 	q := req.URL.Query()
 	q.Set("locale", c.locale.String())
@@ -370,6 +379,9 @@ func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQu
 	}
 
 	req.Header.Set("Accept", "application/json")
+	if c.cfg.UserAgent != "" {
+		req.Header.Set("User-Agent", c.cfg.UserAgent)
+	}
 
 	res, err := c.httpClient.Do(req)
 	if err != nil {
@@ -404,6 +416,9 @@ func (c *Client) getStructDataOAuth(ctx context.Context, pathAndQuery, namespace
 	}
 
 	req.Header.Set("Accept", "application/json")
+	if c.cfg.UserAgent != "" {
+		req.Header.Set("User-Agent", c.cfg.UserAgent)
+	}
 
 	q := req.URL.Query()
 	q.Set("locale", c.locale.String())
