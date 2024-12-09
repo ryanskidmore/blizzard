@@ -45,7 +45,7 @@ func (c *Client) OWLSummaryData(ctx context.Context) (*owl.SummaryData, *Header,
 		return nil, nil, errors.New(res.Status)
 	}
 
-	header := getHeader(res.Header)
+	header := getHeader(res)
 	if err != nil {
 		return nil, nil, err
 	}

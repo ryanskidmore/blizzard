@@ -45,9 +45,12 @@ type Header struct {
 	XTraceSpanID            string    `json:"X-Trace-Spanid"`
 	XTraceParentSpanID      string    `json:"X-Trace-Parentspanid"`
 	XTraceTraceID           string    `json:"X-Trace-Traceid"`
+	StatusCode              int
 }
 
-func getHeader(httpHeader http.Header) *Header {
+func getHeader(res *http.Response) *Header {
+	httpHeader := res.Header
+
 	header := Header{
 		BattlenetNamespace:      httpHeader.Get(HeaderKeyBattlenetNamespace),
 		BattlenetSchema:         httpHeader.Get(HeaderKeyBattlenetSchema),
@@ -62,6 +65,7 @@ func getHeader(httpHeader http.Header) *Header {
 		XTraceSpanID:            httpHeader.Get(HeaderKeyXTraceParentSpanID),
 		XTraceParentSpanID:      httpHeader.Get(HeaderKeyXTraceSpanID),
 		XTraceTraceID:           httpHeader.Get(HeaderKeyXTraceTraceID),
+		StatusCode:              res.StatusCode,
 	}
 	if httpHeader.Get(HeaderKeyDate) != "" {
 		var err error

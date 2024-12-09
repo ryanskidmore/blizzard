@@ -282,7 +282,7 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 		return dat, nil, errors.New(res.Status)
 	}
 
-	header := getHeader(res.Header)
+	header := getHeader(res)
 	if err != nil {
 		return dat, nil, err
 	}
@@ -367,7 +367,7 @@ func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery stri
 		return dat, nil, err
 	}
 
-	return dat, getHeader(res.Header), nil
+	return dat, getHeader(res), nil
 }
 
 // getStructDataNoNamespace processes simple GET request based on pathAndQuery an returns the structured data.
@@ -403,7 +403,7 @@ func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQu
 		return dat, nil, err
 	}
 
-	return dat, getHeader(res.Header), nil
+	return dat, getHeader(res), nil
 }
 
 // getStructDataOAuth processes simple GET request based on pathAndQuery an returns the structured data.
@@ -450,7 +450,7 @@ func (c *Client) getStructDataOAuth(ctx context.Context, pathAndQuery, namespace
 		return dat, nil, err
 	}
 
-	return dat, getHeader(res.Header), nil
+	return dat, getHeader(res), nil
 }
 
 func validateRegionLocalePair(region Region, locale Locale) error {
