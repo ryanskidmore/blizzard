@@ -269,29 +269,29 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 
 	res, err := c.httpClient.Do(req)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 	defer res.Body.Close()
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return dat, nil, errors.New(res.Status)
+		return dat, getErrHeader(res), errors.New(res.Status)
 	}
 
 	header := getHeader(res)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 
 	switch v := dat.(type) {
 	case *wowp.CharacterProfileSummary:
 		bnSchRev, err := strconv.ParseInt(header.BattlenetSchemaRevision, 10, 64)
 		if err != nil {
-			return dat, nil, err
+			return dat, getErrHeader(res), err
 		}
 
 		if bnSchRev < 24 {
@@ -299,13 +299,13 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 			var temp *wowp.CharacterProfileSummaryPreRev24
 			err = json.Unmarshal(body, &temp)
 			if err != nil {
-				return dat, nil, err
+				return dat, getErrHeader(res), err
 			}
 
 			var activeTitle wowp.ActiveTitlePreRev24
 			err = json.Unmarshal(body, &activeTitle)
 			if err != nil {
-				return dat, nil, err
+				return dat, getErrHeader(res), err
 			}
 
 			wowp.ConvertCharacterProfileSummaryPreRev24(activeTitle.ActiveTitle, temp, v)
@@ -314,12 +314,12 @@ func (c *Client) getStructData(ctx context.Context, pathAndQuery, namespace stri
 
 		err = json.Unmarshal(body, &dat)
 		if err != nil {
-			return dat, nil, err
+			return dat, getErrHeader(res), err
 		}
 	default:
 		err = json.Unmarshal(body, &dat)
 		if err != nil {
-			return dat, nil, err
+			return dat, getErrHeader(res), err
 		}
 	}
 
@@ -345,26 +345,26 @@ func (c *Client) getStructDataNoNamespace(ctx context.Context, pathAndQuery stri
 
 	res, err := c.httpClient.Do(req)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 	defer res.Body.Close()
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return dat, nil, errors.New(res.Status)
+		return dat, getErrHeader(res), errors.New(res.Status)
 	}
 
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 
 	err = json.Unmarshal(body, &dat)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 
 	return dat, getHeader(res), nil
@@ -385,22 +385,22 @@ func (c *Client) getStructDataNoNamespaceNoLocale(ctx context.Context, pathAndQu
 
 	res, err := c.httpClient.Do(req)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 	defer res.Body.Close()
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return dat, nil, errors.New(res.Status)
+		return dat, getErrHeader(res), errors.New(res.Status)
 	}
 
 	err = json.Unmarshal(body, &dat)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 
 	return dat, getHeader(res), nil
@@ -432,22 +432,22 @@ func (c *Client) getStructDataOAuth(ctx context.Context, pathAndQuery, namespace
 
 	res, err := client.Do(req)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 	defer res.Body.Close()
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return dat, nil, errors.New(res.Status)
+		return dat, getErrHeader(res), errors.New(res.Status)
 	}
 
 	err = json.Unmarshal(body, &dat)
 	if err != nil {
-		return dat, nil, err
+		return dat, getErrHeader(res), err
 	}
 
 	return dat, getHeader(res), nil

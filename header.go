@@ -84,3 +84,10 @@ func getHeader(res *http.Response) *Header {
 
 	return &header
 }
+
+func getErrHeader(res *http.Response) *Header {
+	header := Header{
+		StatusCode: res.StatusCode,
+	}
+	return &header
+}
