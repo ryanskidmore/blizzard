@@ -86,6 +86,12 @@ func getHeader(res *http.Response) *Header {
 }
 
 func getErrHeader(res *http.Response) *Header {
+	if res == nil {
+		return &Header{
+			StatusCode: http.StatusTeapot,
+		}
+	}
+
 	header := Header{
 		StatusCode: res.StatusCode,
 	}
